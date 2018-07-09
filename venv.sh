@@ -24,10 +24,6 @@ pip-compile --output-file requirements.txt requirements.in
 echo 'pip install requirements.txt ...'
 pip install -r requirements.txt
 
-# pip install --upgrade arrow
-# pip install --upgrade beautifulsoup4
-# pip install --upgrade requests
-
 pip list --format=columns
 
 echo 'done'

@@ -50,8 +50,8 @@
 
         <zip zipfile="${_zipFilename}"
              basedir="${_projectDir}"
-             excludes=".git/, node_modules/, log/, tmp/, private.txt,
-                **/*.class, **/*.jar, **/*.pyc, **/*.zip" />
+             excludes=".git/, bin/, lib/, include/, man/, share/, log/, tmp/, private.txt,
+                **/*.pyc, **/*.zip" />
 
         <echo message="done" />
     </target>

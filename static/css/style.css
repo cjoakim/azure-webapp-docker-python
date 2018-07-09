@@ -1,0 +1,9 @@
+
+.red {
+  color: #fff;
+  background-color: #d41f30;
+  border: 1px solid black;
+  font-weight: bold;
+  margin-left: 40px;
+  margin-right: 40px;
+}

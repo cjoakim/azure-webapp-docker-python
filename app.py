@@ -12,6 +12,9 @@ app = Flask(__name__, static_url_path='')
 
 port = int(os.getenv("PORT"))
 
+def root_dir():
+    return os.path.abspath(os.path.dirname(__file__))
+
 @app.before_first_request
 def before_first_request():
     try:

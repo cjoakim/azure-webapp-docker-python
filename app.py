@@ -1,7 +1,9 @@
+import datetime
 import json
 import os
 import platform
 import sys
+import time
 
 import arrow
 
@@ -11,7 +13,7 @@ from flask import Response
 print('__name__: {}'.format(__name__))
 app = Flask(__name__, static_url_path='')
 
-port = int(os.getenv("PORT", default=3000))
+port = int(os.getenv("PORT", default=80))
 print('port: {}'.format(port))
 
 def root_dir():
@@ -33,18 +35,20 @@ def before_request():
 
 @app.route('/')
 def index_route():
-    return render_template('index.html')
+    data = dict()
+    data['date'] = datetime.datetime.now()
+    data['time'] = time.time()
+    return render_template('index.html', data=data)
 
-@app.route('/list')
+@app.route('/env')
 def images_list_route():
-    return render_template('list.html')
-
-@app.route('/noop')
-def noop_route():
-    filename = request.args.get('filename')
-    if is_image_file(filename):
-        print('noop: {}'.format(filename))
-        return ('', 204)
+    env_vars = list()
+    for env_var_name in sorted(os.environ):
+        env_var = dict()
+        env_var['name'] = env_var_name
+        env_var['value'] = os.getenv(env_var_name)
+        env_vars.append(env_var)
+    return render_template('env.html', env_vars=env_vars)
 
 # private
 

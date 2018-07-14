@@ -7,10 +7,13 @@
 arrow==0.10.0
 click==6.7                # via flask
 docopt==0.6.2
+flask-socketio==3.0.1
 flask==0.12.1
 itsdangerous==0.24        # via flask
 jinja2==2.9.6
 markupsafe==1.0           # via jinja2
 python-dateutil==2.7.3    # via arrow
-six==1.11.0               # via python-dateutil
+python-engineio==2.2.0    # via python-socketio
+python-socketio==2.0.0    # via flask-socketio
+six==1.11.0               # via python-dateutil, python-engineio, python-socketio
 werkzeug==0.14.1          # via flask

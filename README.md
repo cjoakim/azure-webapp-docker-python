@@ -15,7 +15,7 @@ Azure Web App built with Python and the Flask framework
 See https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest
 
 ```
-$az login
+$ az login
 
 $ az webapp deployment user set --user-name <username> --password <password>
 $ az webapp deployment user set --user-name $AZURE_WEBAPP_DEPLOY_NAME --password $AZURE_WEBAPP_DEPLOY_PASS

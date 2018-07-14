@@ -70,5 +70,7 @@ def write_lines(lines, outfile):
         print('file written: {}'.format(outfile))
 
 
-print('run port: {}'.format(port))
-app.run(host=None, port=port)
+if __name__ == "__main__":
+    port = int(os.environ.get('PORT', 5000))
+    print('run port: {}'.format(port))
+    app.run(host='0.0.0.0', port=port)

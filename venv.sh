@@ -2,7 +2,7 @@
 
 # Recreate the virtual environment and reinstall libs.
 # Requires Python 3
-# Chris Joakim, 2018/07/09
+# Chris Joakim, 2018/07/14
 
 echo 'deleting previous venv...'
 rm -rf bin/

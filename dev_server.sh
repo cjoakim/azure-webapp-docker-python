@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Bash script to start Flask on port 3000 in development mode
+# Bash script to start the Flask web app in development mode
 # with auto restarts upon code changes.
-# Chris Joakim, 2018/07/09
+# Chris Joakim, 2018/07/14
 
 export FLASK_APP=app.py
 

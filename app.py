@@ -8,9 +8,11 @@ import arrow
 from flask import Flask, render_template, request, send_file
 from flask import Response
 
+print('__name__: {}'.format(__name__))
 app = Flask(__name__, static_url_path='')
 
-port = int(os.getenv("PORT"))
+port = int(os.getenv("PORT", default=3000))
+print('port: {}'.format(port))
 
 def root_dir():
     return os.path.abspath(os.path.dirname(__file__))
@@ -64,5 +66,5 @@ def write_lines(lines, outfile):
         print('file written: {}'.format(outfile))
 
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=port)
+print('run port: {}'.format(port))
+app.run(host=None, port=port)

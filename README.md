@@ -129,7 +129,16 @@ $ az group create --location eastus --name FlaskFun
 Then create the ACI in the new Resource Group:
 ```
 $ az container create --resource-group FlaskFun --name webapp-docker-python --image cjoakimacr.azurecr.io/webapp-docker-python:latest --cpu 1 --memory 1 --registry-username cjoakimacr --registry-password $AZURE_CONTAINER_REGISTRY_USER_PASS --dns-name-label webapp-docker-python --ports 5000 -e 'PORT=5000'
+
+$ az container list
 ```
+
+Invoke the running ACI with your browser:
+- http://webapp-docker-python.eastus.azurecontainer.io:5000/
+- http://webapp-docker-python.eastus.azurecontainer.io:5000/env
+
+See content similar to this:
+![image 1](img/homepage.png "")
 
 ## 5. Deploy as a Docker image to Azure App Service
 

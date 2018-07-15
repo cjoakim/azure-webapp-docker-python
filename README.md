@@ -11,6 +11,8 @@ Azure Web App built with Python and the Flask framework
 1. Deploy as a Docker image to Azure App Service
 1. Deploy as a GitHub repo to a Data Science Virtual Machine (DSVM)
 
+---
+
 ## 1. Configure workstation
 
 These instructions are for a Linux or macOS workstation.
@@ -43,10 +45,14 @@ See https://www.docker.com/get-docker
 
 Python 3.x and pip are assumed to be installed.
 
+---
+
 ## 2. Develop the app
 
 The application in this repository is a very simple Python3/Flask web application.
 It is intended to simply demonstrate deployment to Azure.
+
+---
 
 ## 3. Dockerize the app
 
@@ -106,6 +112,8 @@ $ docker push cjoakimacr.azurecr.io/webapp-docker-python:latest
 $ az acr repository list --name cjoakimacr --output table
 ```
 
+---
+
 ## 4. Deploy as a Docker image to Azure Container Instance (ACI)
 
 The Azure CLI can be used to do this.
@@ -140,6 +148,8 @@ Invoke the running ACI with your browser:
 See content similar to this:
 ![homepage-img](img/homepage.png "")
 
+---
+
 ## 5. Deploy as a Docker image to Azure App Service
 
 In Azure Portal, create a **Web App** of type **Docker** and configure
@@ -149,6 +159,8 @@ it to use your image from Azure Container Registry as follows:
 
 Visit the URL with your browser, for example:
 http://webapp-docker-python.eastus.azurecontainer.io:5000/
+
+---
 
 ## 6. Deploy as a GitHub repo to a Data Science Virtual Machine
 
@@ -171,10 +183,28 @@ http://40.76.207.55:5000/
 
 Note: this configuration and deployment process can be automated with **Ansible**.
 
+### conda and Anaconda
+
+Alternatively, you can use **conda**, since **Anaconda Python** is the default on the DSVM.
+
+```
+$ ./conda_env_dsvm.sh
+$ source activate flaskweb
+$ python --version
+Python 3.5.2 :: Anaconda custom (64-bit)
+$ python app.py
+```
+
+See https://www.anaconda.com
+
+---
+
 ## Links
 
+- https://azure.microsoft.com/en-us/develop/python/
 - https://docs.microsoft.com/en-us/azure/app-service/app-service-web-get-started-python
 - https://docs.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-python-postgresql 
 - https://docs.microsoft.com/en-us/azure/app-service/web-sites-python-configure
 - https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest
 - git clone https://github.com/Azure-Samples/flask-postgresql-app
+- https://www.anaconda.com

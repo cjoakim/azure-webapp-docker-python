@@ -10,6 +10,7 @@ Azure Web App built with Python and the Flask framework
 1. Deploy as a Docker image to Azure Container Instance
 1. Deploy as a Docker image to Azure App Service
 1. Deploy as a GitHub repo to a Data Science Virtual Machine (DSVM)
+1. Deploy as a Docker image to a Data Science Virtual Machine (DSVM)
 
 ---
 
@@ -164,6 +165,9 @@ http://webapp-docker-python.eastus.azurecontainer.io:5000/
 
 ## 6. Deploy as a GitHub repo to a Data Science Virtual Machine
 
+The DSVM contains many common pre-installed Data Science and Developer tools - 
+python2, python3, R, git, docker, java, ant, maven, php, ruby, etc.
+
 First, in Azure Portal, provision a **Data Science Virtual Machine for Linux (Ubuntu)**.  Specify your ssh keys.
 
 Then, in the DSVM in Azure Porta, open up port 5000 for Flask via the 
@@ -183,7 +187,7 @@ http://40.76.207.55:5000/
 
 Note: this configuration and deployment process can be automated with **Ansible**.
 
-### conda and Anaconda
+### conda and Anaconda on the DSVM
 
 Alternatively, you can use **conda**, since **Anaconda Python** is the default on the DSVM.
 
@@ -196,6 +200,22 @@ $ python app.py
 ```
 
 See https://www.anaconda.com
+
+---
+
+## 7. Deploy as a Docker image to a Data Science Virtual Machine (DSVM)
+
+Since both the Azure CLI and Docker are installed on the DSVM, you can also execute
+your Docker image, rather than the source code, on the DSVM.
+
+```
+$ az --help
+$ docker --help
+
+$ sudo docker run -d -e PORT=5000 -p 5000:5000 cjoakim/webapp-docker-python:latest
+$ sudo docker ps
+$ sudo docker stop -t 1 6a4895321e9e
+```
 
 ---
 

@@ -9,7 +9,7 @@ Azure Web App built with Python and the Flask framework
 1. Dockerize the app
 1. Deploy as a Docker image to Azure Container Instance
 1. Deploy as a Docker image to Azure App Service
-1. Deploy as a GitHub repo to a Data Science Virtual Machine (DSVM) with Ansible
+1. Deploy as a GitHub repo to a Data Science Virtual Machine (DSVM)
 
 ## 1. Configure workstation
 
@@ -138,11 +138,38 @@ Invoke the running ACI with your browser:
 - http://webapp-docker-python.eastus.azurecontainer.io:5000/env
 
 See content similar to this:
-![image 1](img/homepage.png "")
+![homepage-img](img/homepage.png "")
 
 ## 5. Deploy as a Docker image to Azure App Service
 
-## 6. Deploy as a GitHub repo to a Data Science Virtual Machine with Ansible
+In Azure Portal, create a **Web App** of type **Docker** and configure
+it to use your image from Azure Container Registry as follows:
+
+![create-img](img/create-webapp-docker-python.png "")
+
+Visit the URL with your browser, for example:
+http://webapp-docker-python.eastus.azurecontainer.io:5000/
+
+## 6. Deploy as a GitHub repo to a Data Science Virtual Machine
+
+First, in Azure Portal, provision a **Data Science Virtual Machine for Linux (Ubuntu)**.  Specify your ssh keys.
+
+Then, in the DSVM in Azure Porta, open up port 5000 for Flask via the 
+Networking -> Add Inbound Port dialog.
+
+ssh into the VM and execute the following commands:
+```
+$ git clone git@github.com:cjoakim/azure-webapp-docker-python.git
+
+$ ./venv.sh             <- creates the python virtual environment
+$ source bin/activate   <- activate the virtual environment
+$ python app.py         <- start the Flask web app
+```
+
+Then, visit the URL with your browser:
+http://40.76.207.55:5000/
+
+Note: this configuration and deployment process can be automated with **Ansible**.
 
 ## Links
 
@@ -151,20 +178,3 @@ See content similar to this:
 - https://docs.microsoft.com/en-us/azure/app-service/web-sites-python-configure
 - https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest
 - git clone https://github.com/Azure-Samples/flask-postgresql-app
-
-## Azure CLI
-
-See https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest
-
-```
-$ az login
-
-$ az webapp deployment user set --user-name <username> --password <password>
-$ az webapp deployment user set --user-name $AZURE_WEBAPP_DEPLOY_NAME --password $AZURE_WEBAPP_DEPLOY_PASS
-
-$ az webapp deployment user show
-
-$ az webapp list-runtimes
-
-
-```

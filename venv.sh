@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # Recreate the virtual environment and reinstall libs.
-# Requires Python 3
-# Chris Joakim, 2018/07/14
+# Chris Joakim, 2018/08/19
+
+# brew upgrade python3
 
 echo 'deleting previous venv...'
 rm -rf bin/
@@ -10,20 +11,25 @@ rm -rf lib/
 rm -rf include/
 rm -rf man/
 
-echo 'creating new venv ...'
+echo 'creating new venv...'
 python3 -m venv .
 source bin/activate
 python --version
 
-echo 'upgrading pip-tools ...'
+echo 'installing/upgrading libs...'
 pip install --upgrade pip-tools
 
-echo 'pip-compile requirements.in ...'
-pip-compile --output-file requirements.txt requirements.in
+pip install --upgrade arrow
+pip install --upgrade docopt
+pip install --upgrade psycopg2
+pip install --upgrade SQLAlchemy
 
-echo 'pip install requirements.txt ...'
+echo 'pip freeze...'
+pip freeze > requirements.txt
+
+echo 'pip install from requirements.txt...'
 pip install -r requirements.txt
 
-pip list --format=columns
+pip list > pip_list.txt
 
 echo 'done'
